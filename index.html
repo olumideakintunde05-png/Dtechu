@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dtech-Emporium | Buy & Sell Quality Gadgets</title>
+  <meta name="description" content="Buy quality smartphones, laptops, AirPods, and accessories — or sell your damaged phone for instant cash. Dtech-Emporium delivers premium gadgets at fair prices." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #0a1628;
+      --deep:    #0d1f3c;
+      --mid:     #112854;
+      --royal:   #1a3a6e;
+      --blue:    #1e4fc8;
+      --accent:  #2d6ef7;
+      --sky:     #4a90f5;
+      --glow:    #6aaeff;
+      --white:   #ffffff;
+      --offwhite:#f4f7fc;
+      --muted:   #a8b8d0;
+      --border:  rgba(255,255,255,0.08);
+      --card-bg: rgba(255,255,255,0.04);
+      --shadow:  0 8px 32px rgba(0,0,0,0.3);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,0.4);
+      --radius:  16px;
+      --radius-sm: 10px;
+      --font-display: 'Syne', sans-serif;
+      --font-body:    'DM Sans', sans-serif;
+      --wa-green: #25d366;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--navy);
+      color: var(--white);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--navy); }
+    ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 3px; }
+
+    /* ─── SELECTION ─── */
+    ::selection { background: var(--accent); color: #fff; }
+
+    /* ─── UTILITY ─── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(46,111,247,0.15);
+      border: 1px solid rgba(46,111,247,0.3);
+      color: var(--sky);
+      font-family: var(--font-display);
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 6px 16px; border-radius: 100px;
+      margin-bottom: 16px;
+    }
+    .section-tag::before { content: ''; width: 6px; height: 6px; background: var(--sky); border-radius: 50%; display: inline-block; }
+
+    .section-heading {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 1.05rem;
+      font-weight: 300;
+      max-width: 560px;
+    }
+    .text-center { text-align: center; }
+    .text-center .section-sub { margin: 0 auto; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--font-display);
+      font-size: 14px; font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 100px;
+      border: none; cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--blue));
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(46,111,247,0.4);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 8px 30px rgba(46,111,247,0.6);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,0.25);
+    }
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.5);
+      transform: translateY(-2px);
+    }
+    .btn-wa {
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+    }
+    .btn-wa:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 8px 30px rgba(37,211,102,0.5);
+    }
+
+    /* ─── NAVBAR ─── */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0;
+      transition: all 0.4s ease;
+    }
+    #navbar.scrolled {
+      background: rgba(10,22,40,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 24px;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    .logo-icon {
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg, var(--accent), var(--sky));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .logo-text {
+      font-family: var(--font-display);
+      font-size: 18px; font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.3px;
+    }
+    .logo-text span { color: var(--sky); }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 8px;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none; color: var(--muted);
+      font-family: var(--font-display);
+      font-size: 14px; font-weight: 500;
+      padding: 8px 16px; border-radius: 8px;
+      transition: all 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.06); }
+
+    .nav-wa {
+      display: flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      color: #fff; text-decoration: none;
+      font-family: var(--font-display);
+      font-size: 13px; font-weight: 600;
+      padding: 9px 18px; border-radius: 100px;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(37,211,102,0.3);
+    }
+    .nav-wa:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(37,211,102,0.4); }
+
+    /* hamburger */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 6px;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--white); border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none; flex-direction: column; gap: 4px;
+      background: rgba(10,22,40,0.97);
+      backdrop-filter: blur(20px);
+      padding: 16px 24px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      text-decoration: none; color: var(--muted);
+      font-family: var(--font-display);
+      font-size: 16px; font-weight: 500;
+      padding: 12px 16px; border-radius: 10px;
+      transition: all 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--white); background: rgba(255,255,255,0.06); }
+    .mobile-menu .nav-wa { margin-top: 8px; justify-content: center; }
+
+    /* ─── HERO ─── */
+    #home {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding-top: 80px;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 60% 40%, rgba(30,79,200,0.25) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 10% 80%, rgba(26,58,110,0.3) 0%, transparent 60%),
+        linear-gradient(160deg, #0a1628 0%, #0d1f3c 40%, #0a1628 100%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(46,111,247,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46,111,247,0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
+    }
+    .hero-glow {
+      position: absolute; width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(46,111,247,0.12) 0%, transparent 70%);
+      top: 50%; right: -100px; transform: translateY(-50%);
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: center;
+      padding: 80px 0;
+    }
+    .hero-left { }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(46,111,247,0.12);
+      border: 1px solid rgba(46,111,247,0.25);
+      color: var(--sky); font-size: 12px;
+      font-family: var(--font-display);
+      font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 7px 18px; border-radius: 100px;
+      margin-bottom: 28px;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-badge .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--wa-green);
+      box-shadow: 0 0 8px var(--wa-green);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.3); }
+    }
+    .hero-h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 800; line-height: 1.05;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    .hero-h1 .highlight {
+      background: linear-gradient(135deg, var(--sky), var(--glow));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      color: var(--muted); font-size: 1.1rem; font-weight: 300;
+      max-width: 480px; margin-bottom: 36px; line-height: 1.7;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+    .hero-btns {
+      display: flex; flex-wrap: wrap; gap: 14px;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+    .hero-stats {
+      display: flex; gap: 32px; margin-top: 52px;
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+    .stat-item { }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 1.8rem; font-weight: 800;
+      color: var(--white);
+    }
+    .stat-num span { color: var(--sky); }
+    .stat-label { color: var(--muted); font-size: 13px; margin-top: 2px; }
+
+    .hero-right {
+      position: relative;
+      animation: fadeLeft 0.8s 0.2s ease both;
+    }
+    .hero-visual {
+      position: relative;
+      background: linear-gradient(135deg, rgba(26,58,110,0.4), rgba(13,31,60,0.8));
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+    .hero-visual::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(46,111,247,0.08), transparent);
+      border-radius: 24px;
+    }
+    .product-showcase {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .showcase-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px; padding: 20px;
+      text-align: center;
+      transition: all 0.3s;
+      cursor: default;
+    }
+    .showcase-card:hover {
+      background: rgba(46,111,247,0.1);
+      border-color: rgba(46,111,247,0.3);
+      transform: translateY(-3px);
+    }
+    .showcase-emoji { font-size: 2.4rem; margin-bottom: 10px; display: block; }
+    .showcase-name {
+      font-family: var(--font-display);
+      font-size: 13px; font-weight: 700;
+      color: var(--white);
+    }
+    .showcase-price { font-size: 12px; color: var(--sky); margin-top: 4px; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeLeft {
+      from { opacity: 0; transform: translateX(24px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    /* ─── SECTION WRAPPER ─── */
+    .section { padding: 100px 0; }
+    .section-alt { background: rgba(255,255,255,0.015); }
+
+    /* ─── SERVICES ─── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px; margin-top: 60px;
+    }
+    .service-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 28px;
+      transition: all 0.35s cubic-bezier(0.34, 1.2, 0.64, 1);
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--sky));
+      transform: scaleX(0); transition: transform 0.35s ease;
+      transform-origin: left;
+    }
+    .service-card:hover {
+      background: rgba(46,111,247,0.08);
+      border-color: rgba(46,111,247,0.3);
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(46,111,247,0.15);
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, rgba(46,111,247,0.2), rgba(74,144,245,0.1));
+      border: 1px solid rgba(46,111,247,0.25);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; margin-bottom: 20px;
+    }
+    .service-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem; font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .service-desc { color: var(--muted); font-size: 14px; line-height: 1.65; }
+
+    /* ─── PRODUCTS ─── */
+    .products-header {
+      display: flex; align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 50px; gap: 20px;
+      flex-wrap: wrap;
+    }
+    .cat-tabs {
+      display: flex; gap: 8px; flex-wrap: wrap; margin-top: 28px;
+    }
+    .cat-tab {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: var(--font-display);
+      font-size: 13px; font-weight: 600;
+      padding: 8px 20px; border-radius: 100px;
+      cursor: pointer; transition: all 0.25s;
+    }
+    .cat-tab:hover, .cat-tab.active {
+      background: linear-gradient(135deg, var(--accent), var(--blue));
+      border-color: transparent; color: #fff;
+      box-shadow: 0 4px 16px rgba(46,111,247,0.35);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .product-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.34, 1.2, 0.64, 1);
+    }
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+      border-color: rgba(46,111,247,0.3);
+    }
+    .product-img {
+      height: 200px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem;
+      position: relative; overflow: hidden;
+    }
+    .product-img::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, rgba(10,22,40,0.6) 100%);
+    }
+    .product-body { padding: 20px; }
+    .product-cat {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      color: var(--sky); margin-bottom: 6px;
+    }
+    .product-name {
+      font-family: var(--font-display);
+      font-size: 1rem; font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .product-card .btn-wa {
+      width: 100%; justify-content: center;
+      font-size: 13px; padding: 11px 20px;
+    }
+
+    /* product color backgrounds */
+    .bg-iphone    { background: linear-gradient(135deg, #1a3a6e, #0d2a5e); }
+    .bg-android   { background: linear-gradient(135deg, #1e3a4e, #0d2a40); }
+    .bg-laptop    { background: linear-gradient(135deg, #1a2a4e, #0f1e38); }
+    .bg-airpods   { background: linear-gradient(135deg, #1e3050, #0d2240); }
+    .bg-accessory { background: linear-gradient(135deg, #1a2840, #0d1e30); }
+
+    /* ─── HOW IT WORKS ─── */
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0; margin-top: 60px;
+      position: relative;
+    }
+    .steps-grid::before {
+      content: '';
+      position: absolute; top: 36px; left: calc(16.66% + 20px); right: calc(16.66% + 20px); height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(46,111,247,0.4), transparent);
+    }
+    .step-item {
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; padding: 40px 30px;
+      position: relative;
+    }
+    .step-num {
+      width: 72px; height: 72px;
+      background: linear-gradient(135deg, var(--accent), var(--blue));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.5rem; font-weight: 800;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(46,111,247,0.4);
+      position: relative; z-index: 1;
+    }
+    .step-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem; font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .step-desc { color: var(--muted); font-size: 14px; line-height: 1.65; }
+    .step-icon { font-size: 2rem; margin-bottom: 8px; }
+
+    /* ─── LOCATION ─── */
+    .location-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 48px; align-items: center;
+      margin-top: 60px;
+    }
+    .map-wrapper {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      height: 380px;
+    }
+    .map-wrapper iframe {
+      width: 100%; height: 100%; border: none; display: block;
+    }
+    .location-info { display: flex; flex-direction: column; gap: 24px; }
+    .info-card {
+      display: flex; align-items: flex-start; gap: 18px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 22px;
+      transition: all 0.3s;
+    }
+    .info-card:hover {
+      border-color: rgba(46,111,247,0.3);
+      background: rgba(46,111,247,0.05);
+    }
+    .info-icon {
+      width: 46px; height: 46px; flex-shrink: 0;
+      background: linear-gradient(135deg, rgba(46,111,247,0.2), rgba(74,144,245,0.1));
+      border: 1px solid rgba(46,111,247,0.2);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .info-label {
+      font-family: var(--font-display);
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      color: var(--sky); margin-bottom: 6px;
+    }
+    .info-value { font-size: 15px; color: var(--white); font-weight: 400; }
+    .info-value a { color: var(--sky); text-decoration: none; }
+    .info-value a:hover { text-decoration: underline; }
+
+    /* ─── CONTACT ─── */
+    .contact-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px; margin-top: 60px;
+    }
+    .contact-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 24px; text-align: center;
+      transition: all 0.35s;
+    }
+    .contact-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+    .contact-card.primary {
+      background: linear-gradient(135deg, rgba(37,211,102,0.1), rgba(18,140,126,0.08));
+      border-color: rgba(37,211,102,0.25);
+    }
+    .contact-card.primary:hover {
+      border-color: rgba(37,211,102,0.5);
+      box-shadow: 0 12px 40px rgba(37,211,102,0.15);
+    }
+    .contact-icon { font-size: 2.8rem; margin-bottom: 16px; display: block; }
+    .contact-title {
+      font-family: var(--font-display);
+      font-size: 1rem; font-weight: 700; margin-bottom: 8px;
+    }
+    .contact-detail { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
+    .contact-card .btn { width: 100%; justify-content: center; font-size: 13px; }
+
+    /* ─── FLOATING WA ─── */
+    .float-wa {
+      position: fixed; bottom: 28px; right: 28px; z-index: 999;
+      width: 60px; height: 60px;
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 24px rgba(37,211,102,0.5);
+      text-decoration: none;
+      transition: all 0.3s;
+      animation: floatBounce 3s ease-in-out infinite;
+    }
+    .float-wa:hover {
+      transform: scale(1.12) translateY(-3px);
+      box-shadow: 0 10px 32px rgba(37,211,102,0.6);
+    }
+    .float-wa svg { width: 28px; height: 28px; fill: white; }
+    @keyframes floatBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    .float-wa-tooltip {
+      position: absolute; right: 72px; top: 50%; transform: translateY(-50%);
+      background: var(--deep); border: 1px solid var(--border);
+      color: var(--white); font-family: var(--font-display);
+      font-size: 13px; font-weight: 600;
+      padding: 8px 16px; border-radius: 100px;
+      white-space: nowrap; pointer-events: none;
+      opacity: 0; transition: opacity 0.25s;
+      box-shadow: var(--shadow);
+    }
+    .float-wa:hover .float-wa-tooltip { opacity: 1; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: rgba(0,0,0,0.3);
+      border-top: 1px solid var(--border);
+      padding: 64px 0 32px;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px; margin-bottom: 48px;
+    }
+    .footer-brand .logo-text { font-size: 22px; }
+    .footer-tagline {
+      color: var(--muted); font-size: 14px; margin-top: 12px;
+      line-height: 1.7; max-width: 300px;
+    }
+    .footer-socials { display: flex; gap: 12px; margin-top: 24px; }
+    .social-btn {
+      width: 40px; height: 40px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; font-size: 16px;
+      transition: all 0.25s;
+    }
+    .social-btn:hover {
+      background: rgba(46,111,247,0.15);
+      border-color: rgba(46,111,247,0.4);
+      transform: translateY(-2px);
+    }
+    .footer-col-title {
+      font-family: var(--font-display);
+      font-size: 13px; font-weight: 700;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      color: var(--sky); margin-bottom: 20px;
+    }
+    .footer-links { display: flex; flex-direction: column; gap: 12px; list-style: none; }
+    .footer-links a {
+      text-decoration: none; color: var(--muted);
+      font-size: 14px; transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-bottom {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 32px; border-top: 1px solid var(--border);
+      gap: 16px; flex-wrap: wrap;
+    }
+    .footer-copy { color: var(--muted); font-size: 13px; }
+    .footer-copy span { color: var(--sky); }
+    .footer-hours {
+      display: flex; align-items: center; gap: 8px;
+      color: var(--muted); font-size: 13px;
+    }
+    .hours-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--wa-green); box-shadow: 0 0 6px var(--wa-green); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 992px) {
+      .hero-content { grid-template-columns: 1fr; gap: 48px; text-align: center; }
+      .hero-sub { margin: 0 auto 36px; }
+      .hero-btns { justify-content: center; }
+      .hero-stats { justify-content: center; }
+      .hero-right { max-width: 480px; margin: 0 auto; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .steps-grid::before { display: none; }
+      .location-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-wa { display: none; }
+      .hamburger { display: flex; }
+      .section { padding: 72px 0; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .hero-content { padding: 60px 0; }
+    }
+    @media (max-width: 480px) {
+      .hero-h1 { font-size: 2rem; }
+      .hero-btns { flex-direction: column; }
+      .hero-btns .btn { width: 100%; justify-content: center; }
+      .hero-stats { gap: 20px; }
+    }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── TRUST BAR ─── */
+    .trust-bar {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+      padding: 20px 0;
+      overflow: hidden;
+    }
+    .trust-scroll {
+      display: flex; gap: 48px; align-items: center;
+      animation: scroll 20s linear infinite;
+      white-space: nowrap;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 10px;
+      color: var(--muted); font-size: 14px; font-weight: 400;
+      flex-shrink: 0;
+    }
+    .trust-item span { font-size: 18px; }
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════ NAVBAR ═══════════ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo">
+      <div class="logo-icon">📱</div>
+      <span class="logo-text">Dtech<span>-Emporium</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#sell">Sell Your Phone</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="https://wa.me/2348136808400" target="_blank" rel="noopener" class="nav-wa">
+      <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:white;flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.55 4.116 1.515 5.847L.057 23.882a.5.5 0 00.611.617l6.163-1.55A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.502-5.238-1.38l-.372-.213-3.852.968.965-3.742-.234-.387A9.938 9.938 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      WhatsApp Us
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home" onclick="closeMobile()">Home</a>
+    <a href="#products" onclick="closeMobile()">Products</a>
+    <a href="#sell" onclick="closeMobile()">Sell Your Phone</a>
+    <a href="#about" onclick="closeMobile()">About</a>
+    <a href="#contact" onclick="closeMobile()">Contact</a>
+    <a href="https://wa.me/2348136808400" target="_blank" rel="noopener" class="nav-wa" style="display:flex;">
+      <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.55 4.116 1.515 5.847L.057 23.882a.5.5 0 00.611.617l6.163-1.55A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.502-5.238-1.38l-.372-.213-3.852.968.965-3.742-.234-.387A9.938 9.938 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      WhatsApp Us
+    </a>
+  </div>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-left">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          Available on WhatsApp Anytime
+        </div>
+        <h1 class="hero-h1">
+          Buy Quality Gadgets or<br/>
+          <span class="highlight">Sell Your Damaged</span><br/>
+          Phone Today
+        </h1>
+        <p class="hero-sub">
+          We buy cracked or faulty phones and sell high-quality gadgets — iPhones, Android phones, laptops, AirPods, and accessories at the best prices.
+        </p>
+        <div class="hero-btns">
+          <a href="https://wa.me/2348136808400?text=Hi%20Dtech-Emporium!%20I%20want%20to%20sell%20my%20phone." target="_blank" rel="noopener" class="btn btn-wa">
+            <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:white;flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.55 4.116 1.515 5.847L.057 23.882a.5.5 0 00.611.617l6.163-1.55A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.502-5.238-1.38l-.372-.213-3.852.968.965-3.742-.234-.387A9.938 9.938 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Sell My Phone
+          </a>
+          <a href="#products" class="btn btn-outline">View Products →</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-num">500<span>+</span></div>
+            <div class="stat-label">Happy Customers</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">100<span>%</span></div>
+            <div class="stat-label">Tested Devices</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">24<span>/7</span></div>
+            <div class="stat-label">WhatsApp Support</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-visual">
+          <div class="product-showcase">
+            <div class="showcase-card">
+              <span class="showcase-emoji">📱</span>
+              <div class="showcase-name">iPhones</div>
+              <div class="showcase-price">Best Prices</div>
+            </div>
+            <div class="showcase-card">
+              <span class="showcase-emoji">💻</span>
+              <div class="showcase-name">Laptops</div>
+              <div class="showcase-price">All Budgets</div>
+            </div>
+            <div class="showcase-card">
+              <span class="showcase-emoji">🎧</span>
+              <div class="showcase-name">AirPods</div>
+              <div class="showcase-price">Genuine Only</div>
+            </div>
+            <div class="showcase-card">
+              <span class="showcase-emoji">⚡</span>
+              <div class="showcase-name">Accessories</div>
+              <div class="showcase-price">Wide Range</div>
+            </div>
+          </div>
+          <div style="margin-top:20px;padding:16px;background:rgba(37,211,102,0.08);border:1px solid rgba(37,211,102,0.2);border-radius:12px;display:flex;align-items:center;gap:12px;">
+            <div style="width:10px;height:10px;border-radius:50%;background:#25d366;box-shadow:0 0 8px #25d366;flex-shrink:0;"></div>
+            <div style="font-size:13px;color:#a8b8d0;">WhatsApp always available · Instant replies</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TRUST BAR ═══════════ -->
+<div class="trust-bar">
+  <div class="trust-scroll">
+    <div class="trust-item"><span>✅</span> All Devices Tested & Verified</div>
+    <div class="trust-item"><span>🔒</span> Secure Transactions</div>
+    <div class="trust-item"><span>⚡</span> Fast WhatsApp Response</div>
+    <div class="trust-item"><span>💯</span> 100% Genuine Products</div>
+    <div class="trust-item"><span>🏆</span> 500+ Happy Customers</div>
+    <div class="trust-item"><span>🔄</span> Best Buy-Back Prices</div>
+    <!-- duplicate for seamless scroll -->
+    <div class="trust-item"><span>✅</span> All Devices Tested & Verified</div>
+    <div class="trust-item"><span>🔒</span> Secure Transactions</div>
+    <div class="trust-item"><span>⚡</span> Fast WhatsApp Response</div>
+    <div class="trust-item"><span>💯</span> 100% Genuine Products</div>
+    <div class="trust-item"><span>🏆</span> 500+ Happy Customers</div>
+    <div class="trust-item"><span>🔄</span> Best Buy-Back Prices</div>
+  </div>
+</div>
+
+<!-- ═══════════ SERVICES ═══════════ -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="section-tag">What We Do</div>
+      <h2 class="section-heading">Everything You Need<br/>in One Place</h2>
+      <p class="section-sub">From buying your broken device to selling you a premium gadget — we handle it all with transparency and trust.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon">📲</div>
+        <div class="service-title">We Buy Damaged Phones</div>
+        <p class="service-desc">Got a cracked screen or faulty device? Bring it in or chat us on WhatsApp for an instant price offer. No hassle, fast payment.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon">📱</div>
+        <div class="service-title">Quality Smartphones</div>
+        <p class="service-desc">Browse a wide selection of tested iPhones and Android phones. Every device is inspected and verified before sale.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-icon">💻</div>
+        <div class="service-title">Laptops & Gadgets</div>
+        <p class="service-desc">From business workhorses to student-friendly laptops — we stock affordable, high-quality devices for every need.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-4">
+        <div class="service-icon">🎧</div>
+        <div class="service-title">Accessories & More</div>
+        <p class="service-desc">Chargers, cases, earbuds, power banks, screen protectors — everything you need to complete your tech setup.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PRODUCTS ═══════════ -->
+<section class="section section-alt" id="products">
+  <div class="container">
+    <div class="products-header">
+      <div class="reveal">
+        <div class="section-tag">Our Store</div>
+        <h2 class="section-heading">Browse Our Products</h2>
+        <p class="section-sub">Every item tested, verified, and ready for you.</p>
+        <div class="cat-tabs">
+          <button class="cat-tab active" onclick="filterProducts('all', this)">All</button>
+          <button class="cat-tab" onclick="filterProducts('smartphone', this)">Smartphones</button>
+          <button class="cat-tab" onclick="filterProducts('laptop', this)">Laptops</button>
+          <button class="cat-tab" onclick="filterProducts('audio', this)">Audio</button>
+          <button class="cat-tab" onclick="filterProducts('accessory', this)">Accessories</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="products-grid" id="productsGrid">
+
+      <div class="product-card reveal" data-cat="smartphone">
+        <div class="product-img">
+  <img src="pic1.jpg" alt="iphone 14 pro max">
+</div>
+        <div class="product-body">
+          <div class="product-cat">Smartphone · iPhone</div>
+          <div class="product-name">iPhone 14 Pro Max</div>
+          <a href="https://wa.me/2348136808400?text=Hi!%20I'm%20interested%20in%20the%20iPhone%2014%20Pro%20Max" target="_blank" rel="noopener" class="btn btn-wa">
+            <svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.55 4.116 1.515 5.847L.057 23.882a.5.5 0 00.611.617l6.163-1.55A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.502-5.238-1.38l-.372-.213-3.852.968.965-3.742-.234-.387A9.938 9.938 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Chat to Buy
+          </a>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-delay-1" data-cat="smartphone">
+        <div class="product-img">
+  <img src="pic2.jpg" alt="iphone17">
+</div>
+        <div class="product-body">
+          <div class="product-cat">Smartphone · iPhone</div>
+          <div class="product-name">iPhone 17</div>
+          <a href="https://wa.me/2348136808400?text=Hi!%20I'm%20interested%20in%20iPhone%2017" target="_blank" rel="noopener" class="btn btn-wa">
+            <svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.55 4.116 1.515 5.847L.057 23.882a.5.5 0 00.611.617l6.163-1.55A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.502-5.238-1.38l-.372-.213-3.852.968.965-3.742-.234-.387A9.938 9.938 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Chat to Buy
+          </a>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-delay-2" data-cat="smartphone">
+         <div class="product-img">
+  <img src="pic3.jpg" alt="Samsung Galaxy s23">
+</div>
+        <div class="product-body">
+          <div class="product-cat">Smartphone · Samsung</div>
+          <div class="product-name">Samsung Galaxy S23</div>
+          <a href="https://wa.me/2348136808400?text=Hi!%20I'm%20interested%20in%20Samsung%20Galaxy%20S23" target="_blank" rel="noopener" class="btn btn-wa">
+            <svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.55 4.116 1.515 5.847L.057 23.882a.5.5 0 00.611.617l6.163-1.55A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.502-5.238-1.38l-.372-.213-3.852.968.965-3.742-.234-.387A9.938 9.938 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Chat to Buy
+          </a>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-delay-3" data-cat="smartphone">
+         <div class="product-img">
+  <img src="pic4.jpg" alt="google pixel 7">
+</div>
+        <div class="product-body">
+          <div class="product-cat">Smartphone · Android</div>
+          <div class="product-name">Android Flagship Phones</div>
+          <a href="https://wa.me/2348136808400?text=Hi!%20I'm%20interested%20in%20Android%20phones" target="_blank" rel="noopener" class="btn btn-wa">
+            <svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.55 4.116 1.515 5.847L.057 23.882a.5.5 0 00.611.617l6.163-1.55A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.502-5.238-1.38l-.372-.213-3.852.968.965-3.742-.234-.387A9.938 9.938 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Chat to Buy
+          </a>
+        </div>
+      </div>
+
+      <div class="product-card reveal" data-cat="laptop">
+        <div class="product-img">
+  <img src="pic5.jpg" alt="business Laptop">
+</div>
+        <div class="product-body">
+          <div class="product-cat">Laptop · Business</div>
+          <div class="product-name">Business Laptops</div>
+          <a href="https://wa.me/2348136808400?text=Hi!%20I'm%20interested%20in%20business%20laptops" target="_blank" rel="noopener" class="btn btn-wa">
+            <svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.55 4.116 1.515 5.847L.057 23.882a.5.5 0 00.611.617l6.163-1.55A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.502-5.238-1.38l-.372-.213-3.852.968.965-3.742-.234-.387A9.938 9.938 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Chat to Buy
+          </a>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-delay-1" data-cat="laptop">
+        <div class="product-img">
+  <img src="pic6.jpg" alt="gaming Laptop">
+</div>
+        <div class="product-body">
+          <div class="product-cat">Laptop · gaming</div>
+          <div class="product-name">gaming Laptops</div>
+          <a href="https://wa.me/2348136808400?text=Hi!%20I'm%20interested%20in%20gaming%20laptops" target="_blank" rel="noopener" class="btn btn-wa">
+            <svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.55 4.116 1.515 5.847L.057 23.882a.5.5 0 00.611.617l6.163-1.55A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.502-5.238-1.38l-.372-.213-3.852.968.965-3.742-.234-.387A9.938 9.938 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Chat to Buy
+          </a>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-delay-2" data-cat="audio">
+        <div class="product-img">
+  <img src="pic7.jpg" alt="apple airpuds">
+</div>
+        <div class="product-body">
+          <div class="product-cat">Audio · AirPods</div>
+          <div class="product-name">Apple AirPods Pro</div>
+          <a href="https://wa.me/2348136808400?text=Hi!%20I'm%20interested%20in%20AirPods%20Pro" target="_blank" rel="noopener" class="btn btn-wa">
+            <svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.55 4.116 1.515 5.847L.057 23.882a.5.5 0 00.611.617l6.163-1.55A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.502-5.238-1.38l-.372-.213-3.852.968.965-3.742-.234-.387A9.938 9.938 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Chat to Buy
+          </a>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-delay-3" data-cat="audio">
+        <div class="product-img">
+  <img src="pic8.jpg" alt="wireless earbuds">
+</div>
+        <div class="product-body">
+          <div class="product-cat">Audio · Wireless Earbuds</div>
+          <div class="product-name">Wireless Earbuds & Headphones</div>
+          <a href="https://wa.me/2348136808400?text=Hi!%20I'm%20interested%20in%20wireless%20earbuds" target="_blank" rel="noopener" class="btn btn-wa">
+            <svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.55 4.116 1.515 5.847L.057 23.882a.5.5 0 00.611.617l6.163-1.55A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.502-5.238-1.38l-.372-.213-3.852.968.965-3.742-.234-.387A9.938 9.938 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Chat to Buy
+          </a>
+        </div>
+      </div>
+
+      <div class="product-card reveal" data-cat="accessory">
+       <div class="product-img">
+  <img src="pic9.jpg" alt="apple ipad">
+</div>
+        <div class="product-body">
+          <div class="product-cat">ipad · mobile</div>
+          <div class="product-name">Apple ipad</div>
+          <a href="https://wa.me/2348136808400?text=Hi!%20I'm%20interested%20in%20Appleipad%20banks%20and%20charger" target="_blank" rel="noopener" class="btn btn-wa">
+            <svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.55 4.116 1.515 5.847L.057 23.882a.5.5 0 00.611.617l6.163-1.55A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.502-5.238-1.38l-.372-.213-3.852.968.965-3.742-.234-.387A9.938 9.938 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Chat to Buy
+          </a>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-delay-1" data-cat="accessory">
+         <div class="product-img">
+  <img src="pic10.jpg" alt="power bank">
+</div>
+        <div class="product-body">
+          <div class="product-cat">Accessories · power</div>
+          <div class="product-name">power bank</div>
+          <a href="https://wa.me/2348136808400?text=Hi!%20I'm%20interested%20in%20phone%20cases%20and%20screen%20protectors" target="_blank" rel="noopener" class="btn btn-wa">
+            <svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.298.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.55 4.116 1.515 5.847L.057 23.882a.5.5 0 00.611.617l6.163-1.55A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.502-5.238-1.38l-.372-.213-3.852.968.965-3.742-.234-.387A9.938 9.938 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Chat to Buy
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ HOW IT WORKS — SELL ═══════════ -->
+<section class="section" id="sell">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="section-tag">Sell Your Phone</div>
+      <h2 class="section-heading">Turn Your Broken Phone<br/>Into Cash in 3 Easy Steps</h2>
+      <p class="section-sub">Fast, hassle-free, and transparent. We give you the best price for your faulty or cracked device.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-item reveal reveal-delay-1">
+        <div class="step-num">1</div>
+        <div class="step-icon">💬</div>
+        <div class="step-title">Send Your Phone Details</div>
+        <p class="step-desc">Message us on WhatsApp with your phone model, condition, and photos. We respond within minutes — any time of day.</p>
+      </div>
+      <div class="step-item reveal reveal-delay-2">
+        <div class="step-num">2</div>
+        <div class="step-icon">💰</div>
+        <div class="step-title">Get a Quick Price Estimate</div>
+        <p class="step-desc">We assess your device and offer a fair, transparent price. No hidden deductions — what we quote is what you get.</p>
+      </div>
+      <div class="step-item reveal reveal-delay-3">
+        <div class="step-num">3</div>
+        <div class="step-icon">🤝</div>
+        <div class="step-title">Get Paid Instantly</div>
+        <p class="step-desc">Agree on the price, drop off or arrange pickup, and get paid immediately. Fast, safe, and straightforward.</p>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:48px;" class="reveal">
+      <a href="https://wa.me/2348136808400?text=Hi!%20I%20want%20to%20sell%20my%20phone.%20Here%20are%20the%20details:" target="_blank" rel="noopener" class="btn btn-wa" style="font-size:16px;padding:16px 40px;">
+        <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.55 4.116 1.515 5.847L.057 23.882a.5.5 0 00.611.617l6.163-1.55A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.502-5.238-1.38l-.372-.213-3.852.968.965-3.742-.234-.387A9.938 9.938 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Start on WhatsApp Now
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ LOCATION ═══════════ -->
+<section class="section section-alt" id="location">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Find Us</div>
+      <h2 class="section-heading">Visit Our Store</h2>
+      <p class="section-sub">Come in and see our full range of gadgets in person. We're open 6 days a week.</p>
+    </div>
+    <div class="location-grid">
+      <div class="map-wrapper reveal">
+        <iframe
+          src="https://maps.google.com/maps?q=Nigeria&output=embed&z=13"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Dtech-Emporium Location">
+        </iframe>
+      </div>
+      <div class="location-info reveal reveal-delay-1">
+        <div class="info-card">
+          <div class="info-icon">🕐</div>
+          <div>
+            <div class="info-label">Opening Hours</div>
+            <div class="info-value">Monday – Saturday: 9:00 AM – 6:00 PM<br/><span style="color:var(--muted);font-size:13px;">WhatsApp available anytime, 24/7</span></div>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">📍</div>
+          <div>
+            <div class="info-label">Location</div>
+            <div class="info-value"><a href="https://maps.app.goo.gl/4HUoeE8iHu8VcSWb6" target="_blank" rel="noopener">View on Google Maps →</a></div>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">💬</div>
+          <div>
+            <div class="info-label">WhatsApp (Always Available)</div>
+            <div class="info-value"><a href="https://wa.me/2348136808400" target="_blank" rel="noopener">+234 813 680 8400</a></div>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">📧</div>
+          <div>
+            <div class="info-label">Email</div>
+            <div class="info-value"><a href="mailto:bellolajumoke516@gmail.com">bellolajumoke516@gmail.com</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CONTACT ═══════════ -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="section-tag">Get In Touch</div>
+      <h2 class="section-heading">Ready to Buy or Sell?</h2>
+      <p class="section-sub">Reach us through any of these channels. WhatsApp is fastest — we reply within minutes.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card primary reveal reveal-delay-1">
+        <span class="contact-icon">💬</span>
+        <div class="contact-title">WhatsApp</div>
+        <div class="contact-detail">+234 813 680 8400<br/>Available 24/7 — fastest response</div>
+        <a href="https://wa.me/2348136808400" target="_blank" rel="noopener" class="btn btn-wa">
+          <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.55 4.116 1.515 5.847L.057 23.882a.5.5 0 00.611.617l6.163-1.55A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.502-5.238-1.38l-.372-.213-3.852.968.965-3.742-.234-.387A9.938 9.938 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          Message Us Now
+        </a>
+      </div>
+      <div class="contact-card reveal reveal-delay-2">
+        <span class="contact-icon">📸</span>
+        <div class="contact-title">Instagram</div>
+        <div class="contact-detail">@dtec-emporium<br/>Follow us for deals & updates</div>
+        <a href="https://instagram.com/dtec-emporium" target="_blank" rel="noopener" class="btn btn-primary">
+          View Profile →
+        </a>
+      </div>
+      <div class="contact-card reveal reveal-delay-3">
+        <span class="contact-icon">📧</span>
+        <div class="contact-title">Email</div>
+        <div class="contact-detail">bellolajumoke516@gmail.com<br/>For formal inquiries</div>
+        <a href="mailto:bellolajumoke516@gmail.com" class="btn btn-outline">
+          Send Email →
+        </a>
+      </div>
+      <div class="contact-card reveal reveal-delay-4">
+        <span class="contact-icon">🕐</span>
+        <div class="contact-title">Business Hours</div>
+        <div class="contact-detail">Mon – Sat: 9:00 AM – 6:00 PM<br/>WhatsApp: Always open</div>
+        <a href="https://maps.app.goo.gl/4HUoeE8iHu8VcSWb6" target="_blank" rel="noopener" class="btn btn-outline">
+          Get Directions →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="#home" class="nav-logo" style="margin-bottom:16px;display:inline-flex;">
+          <div class="logo-icon">📱</div>
+          <span class="logo-text">Dtech<span>-Emporium</span></span>
+        </a>
+        <p class="footer-tagline">Your trusted destination for quality gadgets. We buy damaged phones and sell premium smartphones, laptops, AirPods, and accessories.</p>
+        <div class="footer-socials">
+          <a href="https://wa.me/2348136808400" target="_blank" rel="noopener" class="social-btn" title="WhatsApp">
+            <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.55 4.116 1.515 5.847L.057 23.882a.5.5 0 00.611.617l6.163-1.55A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.502-5.238-1.38l-.372-.213-3.852.968.965-3.742-.234-.387A9.938 9.938 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          </a>
+          <a href="https://instagram.com/dtec-emporium" target="_blank" rel="noopener" class="social-btn" title="Instagram">📸</a>
+          <a href="mailto:bellolajumoke516@gmail.com" class="social-btn" title="Email">✉️</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#sell">Sell Your Phone</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Products</div>
+        <ul class="footer-links">
+          <li><a href="#products">iPhones</a></li>
+          <li><a href="#products">Android Phones</a></li>
+          <li><a href="#products">Laptops</a></li>
+          <li><a href="#products">AirPods & Earbuds</a></li>
+          <li><a href="#products">Accessories</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 <span>Dtech-Emporium</span>. All rights reserved.</div>
+      <div class="footer-hours">
+        <span class="hours-dot"></span>
+        Open Mon–Sat · 9AM – 6PM · WhatsApp 24/7
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════ FLOATING WA ═══════════ -->
+<a href="https://wa.me/2348136808400" target="_blank" rel="noopener" class="float-wa" aria-label="Chat on WhatsApp">
+  <div class="float-wa-tooltip">Chat with us!</div>
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.55 4.116 1.515 5.847L.057 23.882a.5.5 0 00.611.617l6.163-1.55A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.502-5.238-1.38l-.372-.213-3.852.968.965-3.742-.234-.387A9.938 9.938 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+</a>
+
+<script>
+  // Navbar scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  // Mobile menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', open);
+  });
+  function closeMobile() {
+    mobileMenu.classList.remove('open');
+    hamburger.classList.remove('open');
+  }
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Product filter
+  function filterProducts(cat, btn) {
+    document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.product-card').forEach(card => {
+      const match = cat === 'all' || card.dataset.cat === cat;
+      card.style.display = match ? 'block' : 'none';
+    });
+  }
+</script>
+</body>
+</html>
